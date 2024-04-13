@@ -58,12 +58,12 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Implement delete function in Subscriber repository.`
     -   [x] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
 -   **STAGE 2: Implement services and controllers**
-    -   [ ] Commit: `Create Notification service struct skeleton.`
-    -   [ ] Commit: `Implement subscribe function in Notification service.`
-    -   [ ] Commit: `Implement subscribe function in Notification controller.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification service.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification controller.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
+    -   [x] Commit: `Create Notification service struct skeleton.`
+    -   [x] Commit: `Implement subscribe function in Notification service.`
+    -   [x] Commit: `Implement subscribe function in Notification controller.`
+    -   [x] Commit: `Implement unsubscribe function in Notification service.`
+    -   [x] Commit: `Implement unsubscribe function in Notification controller.`
+    -   [x] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
 -   **STAGE 3: Implement notification mechanism**
     -   [ ] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
     -   [ ] Commit: `Implement notify function in Notification service to notify each Subscriber.`
@@ -90,5 +90,17 @@ Penggunaan Vec (list) dalam konteks aplikasi ini sebenarnya cukup jika kita hany
 Pada Singleton Pattern, satu class hanya memiliki satu instance di seluruh aplikasi. Dalam konteks aplikasi ini, menggunakan DashMap untuk SUBSCRIBERS static variable adalah pilihan terbaik karena memudahkan kita untuk mengakses data dari manapun dan memastikan bahwa itu aman secara bersamaan. DashMap menyediakan solusi yang baik untuk keamanan concurrency dalam multithreaded environment, yang mana sangat penting dalam Rust. Meskipun Singleton pattern dapat diimplementasikan dalam Rust, penggunaannya mungkin tidak diperlukan dalam kasus ini karena DashMap secara efektif menyediakan fungsionalitas yang diperlukan sambil mempertahankan keamanan bersama.
 
 #### Reflection Publisher-2
+1. In the Model-View Controller (MVC) compound pattern, there is no “Service” and “Repository”. Model in MVC covers both data storage and business logic. Explain based on your understanding of design principles, why we need to separate “Service” and “Repository” from a Model?
+
+Seandainya kita menggabungkan antara data storage dengan business logic dalam suatu Model, hal ini bisa melanggar dari prinsip SOLID, seperti SRP dimana Model disini memiliki dua tanggung jawab yaitu menyimpan data dan juga business logic. Tidak hanya itu, jika kita tinjau dari sisi design principle, kita harus memisahkan segala sesuatu yang berbeda antara yang satu dengan yang lain. Dengan adanya pemisahan data storage pada Repository dan business logic ke Service, sekarang Model hanya memiliki satu tanggung jawab yaitu merepresentasikan data yang akan digunakan pada aplikasi kita. Tersisanya satu tanggung jawab ini juga bisa memudahkan kita dalam mendefinisikan data kita dalam suatu database (SQL).
+
+2. What happens if we only use the Model? Explain your imagination on how the interactions between each model (Program, Subscriber, Notification) affect the code complexity for each model?
+
+Tanpa adanya pemisahan tugas pada Model, hal ini bisa menyebabkan masalah seperti yang sudah disebutkan pada poin (1). Hal ini dapat menyebabkan peningkatan kompleksitas, keterkaitan erat antara komponen, dan maintainablity. Selain itu, interaksi antara model-model yang berbeda akan menjadi lebih rumit dan terkait erat. Misalnya, jika sebuah Product perlu memberi tahu Subscriber tentang perubahan, itu mungkin langsung berinteraksi dengan objek Subscriber untuk mengirimkan Notification, melanggar enkapsulasi dan menghasilkan kode yang sulit dipahami. Secara keseluruhan, tanpa pemisahan concern yang tepat, kompleksitas kode untuk setiap model akan meningkat secara signifikan, membuatnya lebih sulit dipahami, diuji, dan dipelihara.
+
+3. Have you explored more about Postman? Tell us how this tool helps you to test your current work. You might want to also list which features in Postman you are interested in or feel like it is helpful to help your Group Project or any of your future software engineering projects.
+
+Sejauh ini Postman membantu saya untuk mengetest program yang sedang dibuat, baik tutorial ini, maupun proyek lainnya. Saya menggunakan Postman untuk menguji request-request yang tersedia yang biasanya berkaitan dengan API. Kita bisa mengirimkan request sesuai endpoint yang tersedia pada program kita. Ada beberapa fitur yang mungkin akan saya gunakan nantinya yaitu **Sending Requests**, **Automated Testing**, dan **Environment Variables**.
+
 
 #### Reflection Publisher-3
